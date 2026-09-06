@@ -1,0 +1,11 @@
+/target
+*.lock
+
+# A template starts with no progress: the save files appear on the first
+# headed run and are that player's, not the template's.
+/saves
+
+# review transients (adversarial-review outputs)
+review/*
+!review/.gitkeep
+/dist
