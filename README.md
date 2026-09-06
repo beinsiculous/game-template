@@ -61,12 +61,16 @@ It goes both ways.
 **An export drops on the clone**, from the clone's root:
 
 ```sh
-unzip -o <slug>.zip -x README.md -d .
+rm -rf assets/scenes assets/scripts && unzip -o <slug>.zip -x README.md -d .
 ```
 
-`project.ron` and `assets/` are overwritten and `cargo run` plays the export. The `-x` is
-load-bearing: every export carries a generated `README.md`, and `unzip -o` would replace
-the one you are reading with it.
+`project.ron` and `assets/` are replaced and `cargo run` plays the export. Both halves are
+load-bearing. The `rm` first: `unzip -o` adds to a directory, it does not empty it, and the
+game loads whichever scene sorts first — the template's own `main.scene.ron` sorts ahead of
+most names, so without the `rm` you would be playing the coin demo, and a later zip of the
+clone would carry it back into the browser. The `-x`: every export carries a generated
+`README.md`, and `unzip -o` would replace the one you are reading with it. The font under
+`assets/fonts/` stays, so the template's text still draws.
 
 **The clone goes back to the browser**, from the clone's root:
 
