@@ -41,7 +41,7 @@ An exported project is a zip in this shape:
 <slug>.zip
 ├── project.ron     # the ProjectManifest
 ├── README.md       # generated: the title and the docs URL
-└── assets/         # scenes, .sheet.ron sidecars, scripts, images, sounds, fonts, locales
+└── assets/         # scenes, scripts, sprites and their .sheet.ron sidecars, sounds, fonts, locales
 ```
 
 This repository is the same tree with a crate around it:
@@ -51,10 +51,14 @@ project.ron         # the same manifest, so the clone and the archive match
 assets/
 ├── scenes/main.scene.ron
 ├── scripts/{player,coin}.rhai
-├── images/ball_8px.png                # the Player and the Coin, tinted by the scene
+├── sprites/ball_8px.{png,sheet.ron}   # the Player and the Coin, tinted by the scene
 └── fonts/font.ttf
 src/                # the crate: menu, chaos modes, achievements, the coin count
 ```
+
+The images moved from `assets/images/` to `assets/sprites/`, each `.png` beside its
+`.sheet.ron`, and the scenes name `sprites/…`: a clone made before the move does the same —
+`images/` → `sprites/`, scenes follow.
 
 It goes both ways.
 
